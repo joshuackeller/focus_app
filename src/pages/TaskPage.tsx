@@ -5,7 +5,12 @@ import { useState, useEffect } from "react";
 import { Duration } from "luxon";
 
 const TaskPage = ({ task }: { task: Task }) => {
-  const [timeSpent, setTimeSpent] = useState<number>(task.time_spent);
+  console.log(task.time_spent, task.start_time);
+  const [timeSpent, setTimeSpent] = useState<number>(
+    task.start_time
+      ? Date.now() - task.start_time.getTime() + task.time_spent
+      : task.time_spent
+  );
 
   useEffect(() => {
     const intervalId = setInterval(() => {

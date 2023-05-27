@@ -5,9 +5,8 @@ export interface Task {
   id: number;
   name: string;
   time_spent: number;
-  estimated_time: number;
-  start_time?: number | null;
-  complete: boolean;
+  start_time?: Date | null;
+  estimated_time?: number | null;
   createdAt: Date;
   updatedAt: Date;
 }

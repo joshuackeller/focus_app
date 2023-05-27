@@ -6,6 +6,7 @@ export async function POST(req: Request) {
   const data = await prisma.task.create({
     data: {
       name,
+      start_time: new Date(),
     },
   });
 

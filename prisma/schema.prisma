@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Task {
-  id             Int      @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   name           String
-  time_spent     Int      @default(0)
-  estimated_time Int      @default(0)
-  start_time     Int?
-  complete       Boolean  @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  time_spent     Int       @default(0)
+  start_time     DateTime?
+  estimated_time Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
