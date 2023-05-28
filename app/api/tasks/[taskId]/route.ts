@@ -16,17 +16,19 @@ export async function PUT(
   });
 
   if (task.start_time === null)
-    throw Error("Could not time spent, start time not defined");
-
+    throw Error("Could not update time spent, start time not defined");
   const timeSpent = Date.now() - task.start_time.getTime();
 
-  return await prisma.task.update({
-    where: { id: parseInt(taskId) },
-    data: {
-      start_time: null,
-      time_spent: task.time_spent + timeSpent,
-    },
-  });
+  return NextResponse.json(
+    await prisma.task.update({
+      where: { id: parseInt(taskId) },
+      data: {
+        start_time: null,
+        time_spent: task.time_spent + timeSpent,
+        complete: true,
+      },
+    })
+  );
 }
 
 export async function DELETE(

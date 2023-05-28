@@ -1,8 +1,6 @@
 import prisma from "@/prisma/client";
 import CreateTaskForm from "@/src/components/CreateTaskForm";
 import TaskRow from "@/src/components/TaskRow";
-import HomePage from "@/src/pages/HomePage";
-import Link from "next/link";
 
 export default async function Home() {
   const tasks = await prisma.task.findMany({
@@ -11,14 +9,19 @@ export default async function Home() {
     },
   });
   return (
-    <div className="py-5 px-10">
+    <div className="my-5 mx-10">
       <div className="mb-3">
         <CreateTaskForm />
       </div>
       <div className="text-2xl font-bold">Tasks</div>
-      {tasks.map((task) => (
-        <TaskRow task={task} />
-      ))}
+      {tasks.length === 0 ? (
+        <div className="text-center py-10">
+          <div>No tasks found</div>
+          <div>Create a task to get started</div>
+        </div>
+      ) : (
+        tasks.map((task) => <TaskRow task={task} key={task.id} />)
+      )}
     </div>
   );
 }

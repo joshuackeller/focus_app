@@ -13,6 +13,7 @@ datasource db {
 model Task {
   id             Int       @id @default(autoincrement())
   name           String
+  complete       Boolean   @default(false)
   time_spent     Int       @default(0)
   start_time     DateTime?
   estimated_time Int?

@@ -1,5 +1,7 @@
 import prisma from "@/prisma/client";
 import TaskPage from "@/src/pages/TaskPage";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 interface PageParams {
   params: {
@@ -12,5 +14,12 @@ export default async function Page({ params: { taskId } }: PageParams) {
     where: { id: parseInt(taskId) },
   });
   if (!task) return <div>No task found</div>;
-  return <TaskPage task={task} />;
+  return (
+    <>
+      <Link href="/" className="absolute top-5 left-10">
+        <ArrowLeftIcon className="h-6 w-6" />
+      </Link>
+      <TaskPage task={task} />
+    </>
+  );
 }
