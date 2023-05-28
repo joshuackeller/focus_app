@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContextParams {
@@ -19,6 +20,7 @@ export async function PUT(
     throw Error("Could not update time spent, start time not defined");
   const timeSpent = Date.now() - task.start_time.getTime();
 
+  revalidatePath("/");
   return NextResponse.json(
     await prisma.task.update({
       where: { id: parseInt(taskId) },
@@ -35,6 +37,7 @@ export async function DELETE(
   _req: NextRequest,
   { params: { taskId } }: ContextParams
 ) {
+  revalidatePath("/");
   return NextResponse.json(
     await prisma.task.delete({
       where: { id: parseInt(taskId) },
