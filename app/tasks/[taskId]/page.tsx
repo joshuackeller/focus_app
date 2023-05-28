@@ -19,7 +19,7 @@ export default async function Page({ params: { taskId } }: PageParams) {
       <Link href="/" className="absolute top-5 left-10">
         <ArrowLeftIcon className="h-6 w-6" />
       </Link>
-      {/* <TaskPage task={task} /> */}
+      <TaskPage task={task} />
     </>
   );
 }
