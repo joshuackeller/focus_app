@@ -1,7 +1,6 @@
 "use client";
 
-import { Task } from "@/prisma";
-import { useState, useEffect } from "react";
+import { Task } from "@/src/types/models";
 import { Duration } from "luxon";
 import axios from "axios";
 import { useRouter } from "next/navigation";

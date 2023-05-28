@@ -1,6 +1,6 @@
 "use client";
 
-import { Task } from "@/prisma";
+import { Task } from "@/src/types/models";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
