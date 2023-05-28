@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "interfaces": "npx @kalissaac/prisma-typegen ./prisma ./prisma/schema.prisma"
+    "interfaces": "npx @kalissaac/prisma-typegen ./prisma ./prisma/schema.prisma",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
