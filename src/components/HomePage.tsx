@@ -10,7 +10,12 @@ interface HomePageProps {
 }
 
 const HomePage = ({ tasks }: HomePageProps) => {
-  const token = localStorage.getItem("token");
+  let token;
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    token = localStorage.getItem("token");
+  }
+
   if (token) {
     return (
       <div className="my-5 mx-10">

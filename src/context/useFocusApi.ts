@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const useFocusApi = () => {
-  const token = localStorage.getItem("token");
+  let token;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
   if (token) {
     return axios.create({
       headers: {
