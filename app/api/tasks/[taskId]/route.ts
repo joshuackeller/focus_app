@@ -28,17 +28,16 @@ export async function PUT(
     throw Error("Could not update time spent, start time not defined");
   const timeSpent = Date.now() - task.start_time.getTime();
 
+  const updated_task = await prisma.task.update({
+    where: { id: parseInt(taskId) },
+    data: {
+      start_time: null,
+      time_spent: task.time_spent + timeSpent,
+      complete: true,
+    },
+  });
   revalidatePath("/");
-  return NextResponse.json(
-    await prisma.task.update({
-      where: { id: parseInt(taskId) },
-      data: {
-        start_time: null,
-        time_spent: task.time_spent + timeSpent,
-        complete: true,
-      },
-    })
-  );
+  return NextResponse.json(updated_task);
 }
 
 export async function DELETE(
@@ -51,10 +50,11 @@ export async function DELETE(
   if (!process.env.JWT_SECRET) throw Error("No secret found");
   jwt.verify(token, process.env.JWT_SECRET);
 
+  await prisma.task.delete({
+    where: { id: parseInt(taskId) },
+  });
+
   revalidatePath("/");
-  return NextResponse.json(
-    await prisma.task.delete({
-      where: { id: parseInt(taskId) },
-    })
-  );
+
+  return NextResponse.json({ status: "success" });
 }
