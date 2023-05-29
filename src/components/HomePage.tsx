@@ -1,28 +1,9 @@
 "use client";
 
-import clsx from "clsx";
 import { Task } from "../types/models";
 import CreateTaskForm from "./CreateTaskForm";
 import SignInForm from "./SignInForm";
 import TaskRow from "./TaskRow";
-
-const COLORS = [
-  "bg-emerald-800",
-  "bg-emerald-700",
-  "bg-emerald-600",
-  "bg-green-600",
-  "bg-green-500",
-  "bg-lime-500",
-  "bg-lime-400",
-  "bg-yellow-300",
-  "bg-yellow-400",
-  "bg-amber-400",
-  "bg-amber-500",
-  "bg-orange-400",
-  "bg-red-400",
-  "bg-red-500",
-  "bg-red-600",
-];
 
 interface HomePageProps {
   tasks: Task[];
@@ -50,11 +31,6 @@ const HomePage = ({ tasks }: HomePageProps) => {
         ) : (
           tasks.map((task) => <TaskRow task={task} key={task.id} />)
         )}
-        <div className="flex">
-          {COLORS.map((c) => (
-            <div className={clsx(c, "h-12 w-12")} />
-          ))}
-        </div>
       </div>
     );
   } else {
