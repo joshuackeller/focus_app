@@ -4,21 +4,21 @@ import { useState, useEffect } from "react";
 import { Task } from "../types/models";
 
 const COLORS = [
-  "bg-emerald-800",
-  "bg-emerald-700",
-  "bg-emerald-600",
-  "bg-green-600",
-  "bg-green-500",
-  "bg-lime-500",
-  "bg-lime-400",
-  "bg-yellow-300",
-  "bg-yellow-400",
-  "bg-amber-400",
-  "bg-amber-500",
-  "bg-orange-400",
-  "bg-red-400",
-  "bg-red-500",
-  "bg-red-600",
+  "text-emerald-800",
+  "text-emerald-700",
+  "text-emerald-600",
+  "text-green-600",
+  "text-green-500",
+  "text-lime-500",
+  "text-lime-400",
+  "text-yellow-300",
+  "text-yellow-400",
+  "text-amber-400",
+  "text-amber-500",
+  "text-orange-400",
+  "text-red-400",
+  "text-red-500",
+  "text-red-600",
 ];
 
 interface RunningTimeProps {
