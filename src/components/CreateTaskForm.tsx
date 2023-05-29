@@ -1,17 +1,18 @@
 "use client";
-import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useFocusApi from "../context/useFocusApi";
 
 const CreateTaskForm = () => {
   const router = useRouter();
+  const api = useFocusApi();
 
   const [name, setName] = useState<string>("");
-  const [hours, setHours] = useState<number>(0);
-  const [minutes, setMinutes] = useState<number>(0);
+  const [hours, setHours] = useState<number | undefined>();
+  const [minutes, setMinutes] = useState<number | undefined>();
 
   const createNewTask = async () => {
-    const response = await axios.post("/api/tasks", {
+    const response = await api.post("/api/tasks", {
       name,
       hours,
       minutes,

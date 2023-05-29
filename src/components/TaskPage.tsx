@@ -2,15 +2,16 @@
 
 import { Task } from "@/src/types/models";
 import { Duration } from "luxon";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import RunningTime from "../components/RunningTime";
+import useFocusApi from "../context/useFocusApi";
 
 const TaskPage = ({ task }: { task: Task }) => {
   const router = useRouter();
+  const api = useFocusApi();
 
   const handleCompleteTask = async () => {
-    await axios.put(`/api/tasks/${task.id}`);
+    await api.put(`/api/tasks/${task.id}`);
     router.push("/");
   };
 
@@ -22,15 +23,11 @@ const TaskPage = ({ task }: { task: Task }) => {
           <div>{task.name}</div>
           <div className="py-2">
             <RunningTime
-              millis={
-                task.start_time
-                  ? Date.now() - task.start_time.getTime() + task.time_spent
-                  : task.time_spent
-              }
-              disabled={task.complete}
+              task={task}
               className={
                 task.estimated_time ? "border-b-2 border-black" : undefined
               }
+              colorsEnabled={true}
             />
             {task.estimated_time ? (
               <div>

@@ -2,12 +2,12 @@
 
 import { Task } from "@/src/types/models";
 import Link from "next/link";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { CheckIcon, XMarkIcon, ClockIcon } from "@heroicons/react/20/solid";
 import { MouseEvent } from "react";
 import { DateTime, Duration } from "luxon";
 import RunningTime from "./RunningTime";
+import useFocusApi from "../context/useFocusApi";
 
 interface TaskRowProps {
   task: Task;
@@ -15,10 +15,13 @@ interface TaskRowProps {
 
 const TaskRow = ({ task }: TaskRowProps) => {
   const router = useRouter();
+  const api = useFocusApi();
+
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    await axios.delete(`/api/tasks/${task.id}`);
+    await api.delete(`/api/tasks/${task.id}`);
+
     router.refresh();
   };
   return (
@@ -42,14 +45,7 @@ const TaskRow = ({ task }: TaskRowProps) => {
           DateTime.DATETIME_SHORT
         )}
       </div>
-      <RunningTime
-        millis={
-          task.start_time
-            ? Date.now() - task.start_time.getTime() + task.time_spent
-            : task.time_spent
-        }
-        disabled={task.complete}
-      />
+      <RunningTime task={task} />
       <div>
         {task.estimated_time
           ? Duration.fromMillis(task.estimated_time).toFormat("hh:mm:ss")
