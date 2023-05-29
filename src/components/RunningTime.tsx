@@ -4,17 +4,21 @@ import { useState, useEffect } from "react";
 import { Task } from "../types/models";
 
 const COLORS = [
-  "text-emerald-700",
-  "text-emerald-600",
-  "text-green-500",
-  "text-green-400",
-  "text-lime-300",
-  "text-yellow-300",
-  "text-yellow-400",
-  "text-amber-400",
-  "text-orange-400",
-  "text-red-400",
-  "text-red-500",
+  "bg-emerald-800",
+  "bg-emerald-700",
+  "bg-emerald-600",
+  "bg-green-600",
+  "bg-green-500",
+  "bg-lime-500",
+  "bg-lime-400",
+  "bg-yellow-300",
+  "bg-yellow-400",
+  "bg-amber-400",
+  "bg-amber-500",
+  "bg-orange-400",
+  "bg-red-400",
+  "bg-red-500",
+  "bg-red-600",
 ];
 
 interface RunningTimeProps {
@@ -74,16 +78,20 @@ const GetColor = (task: Task) => {
       ? Date.now() - task.start_time.getTime() + task.time_spent
       : task.time_spent;
     const progress = timeSpent / task.estimated_time;
-    if (progress < 1 / 10) return COLORS[0];
-    else if (progress < 2 / 10) return COLORS[2];
-    else if (progress < 3 / 10) return COLORS[3];
-    else if (progress < 4 / 10) return COLORS[4];
-    else if (progress < 5 / 10) return COLORS[5];
-    else if (progress < 6 / 10) return COLORS[6];
-    else if (progress < 7 / 10) return COLORS[7];
-    else if (progress < 8 / 10) return COLORS[8];
-    else if (progress < 9 / 10) return COLORS[9];
-    else return COLORS[10];
+    if (progress < 1 / 14) return COLORS[0];
+    else if (progress < 2 / 14) return COLORS[2];
+    else if (progress < 3 / 14) return COLORS[3];
+    else if (progress < 4 / 14) return COLORS[4];
+    else if (progress < 5 / 14) return COLORS[5];
+    else if (progress < 6 / 14) return COLORS[6];
+    else if (progress < 7 / 14) return COLORS[7];
+    else if (progress < 8 / 14) return COLORS[8];
+    else if (progress < 9 / 14) return COLORS[9];
+    else if (progress < 10 / 14) return COLORS[10];
+    else if (progress < 11 / 14) return COLORS[11];
+    else if (progress < 12 / 14) return COLORS[12];
+    else if (progress < 13 / 14) return COLORS[13];
+    else return COLORS[14];
   } else return "text-black";
 };
 
