@@ -17,7 +17,7 @@ const TaskPage = ({ task }: { task: Task }) => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="text-center">
+      <div className="text-center max-w-2xl mx-auto">
         <div className="text-gray-700 text-sm">Task #{task.id}</div>
         <div className="text-5xl">
           <div>{task.name}</div>

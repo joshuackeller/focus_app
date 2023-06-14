@@ -6,6 +6,7 @@ export default async function Home() {
     orderBy: {
       createdAt: "desc",
     },
+    take: 25,
   });
 
   return <HomePage tasks={tasks} />;
